@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
     <script>
       tailwind.config = {
         theme: {
           extend: {
             colors: {
-              'brand-sage': '#4A5D4E',
+              'brand-teal': '#3AA8A6',
+              'brand-teal-dark': '#006A68',
               'brand-stone': '#F4F1EA',
             },
             fontFamily: {
@@ -33,12 +38,24 @@
         import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
 
         // --- Icon Components ---
+        
+        const MortarPestleIcon = (props) => (
+          React.createElement('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', ...props },
+            React.createElement('path', { d: 'M2,16H22V18H2V16ZM20,8H4V14H20V8ZM13.5,4L16,2H8L10.5,4H13.5Z' })
+          )
+        );
 
-        const LeafIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
-                React.createElement('path', { fillRule: "evenodd", d: "M10 2a.75.75 0 01.75.75V3a2 2 0 00-1.5 0V2.75A.75.75 0 0110 2zM5.03 5.03a.75.75 0 010-1.061 3.5 3.5 0 014.95 0 .75.75 0 01-1.06 1.06A2 2 0 005.03 5.03zM3 10a.75.75 0 01.75-.75H4a2 2 0 000 1.5H3.75A.75.75 0 013 10zm11.97 0a.75.75 0 01.75.75v.25a2 2 0 000-1.5v-.25a.75.75 0 01.75-.75zm-5.455 3.96a.75.75 0 011.06 0 3.5 3.5 0 010 4.95.75.75 0 01-1.06-1.06 2 2 0 000-2.829z", clipRule: "evenodd" }),
-                React.createElement('path', { d: "M10 5.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" })
-            )
+        const EmailIcon = (props) => (
+          React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
+            React.createElement('path', { d: "M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" }),
+            React.createElement('path', { d: "M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" })
+          )
+        );
+
+        const PhoneIcon = (props) => (
+          React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
+            React.createElement('path', { d: "M16.32,14.88a1,1,0,0,1-1.07.25,12.72,12.72,0,0,1-3.41-2.14,13.25,13.25,0,0,1-4.28-4.28,12.72,12.72,0,0,1-2.14-3.41,1,1,0,0,1,.25-1.07l1-1.29A1,1,0,0,1,8.2,2.68L9.82,4.3a1,1,0,0,1-.19,1.25l-1.53,1.3a.52.52,0,0,0-.09.73,11.46,11.46,0,0,0,5.08,5.08.52.52,0,0,0,.73-.09l1.3-1.53a1,1,0,0,1,1.25-.19l1.62,1.62a1,1,0,0,1-.33,1.53Z" })
+          )
         );
 
         const TruckIcon = (props) => (
@@ -121,7 +138,7 @@
                         React.createElement('label', { htmlFor: "message", className: "block text-white text-sm font-bold mb-2" }, "Message"),
                         React.createElement('textarea', { id: "message", value: message, onChange: (e) => setMessage(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "How can we help?", required: true })
                     ),
-                    React.createElement('button', { type: "submit", className: "w-full bg-brand-sage text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-90 transition-colors transform hover:scale-105" }, "Send Message")
+                    React.createElement('button', { type: "submit", className: "w-full bg-brand-teal text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-teal-dark transition-colors transform hover:scale-105" }, "Send Message")
                 )
             );
         };
@@ -129,20 +146,25 @@
         const Header = () => {
             return React.createElement('header', { className: "bg-white/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md" },
                 React.createElement('div', { className: "container mx-auto px-6 py-3 flex justify-between items-center" },
-                    React.createElement('div', { className: "flex items-center space-x-2" },
-                        React.createElement(LeafIcon, { className: "h-8 w-8 text-brand-sage" }),
-                        React.createElement('h1', { className: "text-xl md:text-2xl font-serif font-bold text-brand-sage" }, "Wellness Center Pharmacy")
+                    React.createElement('div', { className: "flex items-center space-x-2 min-w-0" },
+                        React.createElement(MortarPestleIcon, { className: "h-8 w-8 text-brand-teal flex-shrink-0" }),
+                        React.createElement('h1', { className: "text-xl md:text-2xl font-serif font-bold text-brand-teal truncate" }, "Wellness Center Pharmacy")
                     ),
-                    React.createElement('a', { href: "tel:+17189560060", className: "bg-brand-sage text-white font-bold py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors text-sm md:text-base" }, "Call Us")
+                    React.createElement('nav', { className: "hidden md:flex items-center space-x-2" },
+                        React.createElement('a', { href: "#services", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "Services"),
+                        React.createElement('a', { href: "#reviews", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "About"),
+                        React.createElement('a', { href: "#location", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "Contact")
+                    ),
+                    React.createElement('a', { href: "tel:+17189560060", className: "bg-brand-teal text-white font-bold py-2 px-4 rounded-full hover:bg-brand-teal-dark transition-colors text-sm md:text-base whitespace-nowrap" }, "Call Us")
                 )
             );
         };
 
         const Hero = () => {
-            const heroImageUrl = "https://images.unsplash.com/photo-1585435557343-3c9027883c8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+            const heroImageUrl = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80";
 
             return React.createElement('section', { id: "home", className: "relative min-h-screen bg-cover bg-center flex items-center pt-24 pb-12", style: { backgroundImage: `url(${heroImageUrl})` } },
-                React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-50" }),
+                React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-60" }),
                 React.createElement('div', { className: "container mx-auto px-6 relative z-10" },
                     React.createElement('div', { className: "grid md:grid-cols-2 gap-8 items-center" },
                         React.createElement('div', { className: "text-white text-center md:text-left" },
@@ -165,7 +187,7 @@
             return React.createElement('section', { id: "services", className: "py-20 bg-white" },
                 React.createElement('div', { className: "container mx-auto px-6" },
                     React.createElement('div', { className: "text-center mb-12" },
-                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage" }, "Our Commitment to You"),
+                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal" }, "Our Commitment to You"),
                         React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "Exceptional care and convenience, every step of the way.")
                     ),
                     React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
@@ -173,11 +195,11 @@
                             const Icon = service.icon;
                             return React.createElement('div', { key: index, className: "text-center p-8 bg-brand-stone rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" },
                                 React.createElement('div', { className: "flex justify-center items-center mb-4" },
-                                    React.createElement('div', { className: "bg-brand-sage p-4 rounded-full" },
+                                    React.createElement('div', { className: "bg-brand-teal p-4 rounded-full" },
                                         React.createElement(Icon, { className: "h-8 w-8 text-white" })
                                     )
                                 ),
-                                React.createElement('h3', { className: "text-xl font-serif font-bold text-brand-sage mb-2" }, service.title),
+                                React.createElement('h3', { className: "text-xl font-serif font-bold text-brand-teal mb-2" }, service.title),
                                 React.createElement('p', { className: "text-gray-700" }, service.description)
                             );
                         })
@@ -202,7 +224,7 @@
             return React.createElement('section', { id: "reviews", className: "py-20 bg-brand-stone" },
                 React.createElement('div', { className: "container mx-auto px-6" },
                     React.createElement('div', { className: "text-center mb-12" },
-                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage" }, "What Our Patients Say"),
+                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal" }, "What Our Patients Say"),
                         React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "We're proud to be a trusted part of the Astoria community.")
                     ),
                     React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
@@ -231,18 +253,18 @@
                 React.createElement('div', { className: "container mx-auto px-6" },
                     React.createElement('div', { className: "grid md:grid-cols-2 gap-12 items-center" },
                         React.createElement('div', { className: "text-center md:text-left" },
-                            React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage mb-6" }, "Visit Us in Astoria"),
+                            React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal mb-6" }, "Visit Us in Astoria"),
                             React.createElement('div', { className: "space-y-4 text-lg text-gray-700" },
                                 React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
-                                    React.createElement(MapPinIcon, { className: "h-6 w-6 mr-3 text-brand-sage" }),
+                                    React.createElement(MapPinIcon, { className: "h-6 w-6 mr-3 text-brand-teal" }),
                                     React.createElement('span', null, "40-13 Broadway, Astoria, NY 11103")
                                 ),
                                 React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
-                                    React.createElement(ClockIcon, { className: "h-6 w-6 mr-3 text-brand-sage" }),
+                                    React.createElement(ClockIcon, { className: "h-6 w-6 mr-3 text-brand-teal" }),
                                     React.createElement('span', null, "Open Daily • Closes 7:00 PM")
                                 )
                             ),
-                            React.createElement('a', { href: "https://www.google.com/maps/dir//40-13+Broadway,+Astoria,+NY+11103", target: "_blank", rel: "noopener noreferrer", className: "mt-8 inline-block bg-brand-sage text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors" }, "Get Directions")
+                            React.createElement('a', { href: "https://www.google.com/maps/place/Wellness+Center+Pharmacy/@40.7587684,-73.9185521,17z/data!4m6!3m5!1s0x89c25f3b87f79a59:0xd383d19527349e50!8m2!3d40.7588358!4d-73.9184176!16s%2Fg%2F1tq6k_d6?entry=ttu&g_ep=EgoyMDI2MDIwOC4wIKXMDSoASAFQAw%3D%3D", target: "_blank", rel: "noopener noreferrer", className: "mt-8 inline-block bg-brand-teal text-white font-bold py-3 px-6 rounded-full hover:bg-brand-teal-dark transition-colors" }, "Get Directions")
                         ),
                         React.createElement('div', { className: "rounded-lg overflow-hidden shadow-2xl h-80" },
                             React.createElement('iframe', { src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.6111068213695!2d-73.92348722369486!3d40.77063897138769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f1870a3111d%3A0x34139281a80693a1!2sWellness%20Center%20Pharmacy!5e0!3m2!1sen!2sus!4v1701192994967", width: "100%", height: "100%", style: { border: 0 }, allowFullScreen: false, loading: "lazy", referrerPolicy: "no-referrer-when-downgrade", title: "Wellness Center Pharmacy Location" })
@@ -253,16 +275,22 @@
         };
         
         const Footer = () => {
-            return React.createElement('footer', { className: "bg-brand-sage text-white" },
+            return React.createElement('footer', { className: "bg-brand-teal text-white" },
                 React.createElement('div', { className: "container mx-auto px-6 py-8" },
-                    React.createElement('div', { className: "flex flex-col md:flex-row justify-between items-center text-center md:text-left" },
+                    React.createElement('div', { className: "flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0" },
                         React.createElement('div', { className: "mb-6 md:mb-0" },
                             React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 mb-2" },
-                                React.createElement(LeafIcon, { className: "h-8 w-8 text-white" }),
+                                React.createElement(MortarPestleIcon, { className: "h-8 w-8 text-white" }),
                                 React.createElement('h1', { className: "text-xl font-serif font-bold" }, "Wellness Center Pharmacy")
                             ),
-                            React.createElement('p', { className: "text-sm text-stone-300" }, "40-13 Broadway, Astoria, NY 11103"),
-                            React.createElement('p', { className: "text-sm text-stone-300" }, "tel: (718) 956-0060")
+                            React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-2" },
+                                React.createElement(EmailIcon, { className: "h-4 w-4" }),
+                                React.createElement('a', { href: "mailto:wellnesscenterpharmacy@gmail.com", className:"hover:underline" }, "wellnesscenterpharmacy@gmail.com")
+                            ),
+                             React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-1" },
+                                React.createElement(PhoneIcon, { className: "h-4 w-4" }),
+                                React.createElement('a', { href: "tel:+17189560060", className:"hover:underline" }, "(718) 956-0060")
+                            )
                         ),
                         React.createElement('div', { className: "flex items-center space-x-4" },
                             React.createElement('a', { href: "https://www.facebook.com/p/Wellness-Center-Pharmacy-100063623944414/", target: "_blank", rel: "noopener noreferrer", "aria-label": "Facebook", className: "text-white hover:text-stone-300 transition-colors" },
@@ -270,7 +298,7 @@
                             )
                         )
                     ),
-                    React.createElement('div', { className: "border-t border-white/20 mt-8 pt-6 text-center text-sm text-stone-300" },
+                    React.createElement('div', { className: "border-t border-white/20 mt-8 pt-6 text-center text-sm text-stone-200" },
                         React.createElement('p', null, `© ${new Date().getFullYear()} Wellness Center Pharmacy. All Rights Reserved.`)
                     )
                 )
