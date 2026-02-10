@@ -4,15 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wellness Center Pharmacy | Astoria, NY</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
     <style>
       html {
         scroll-behavior: smooth;
       }
     </style>
+    <!-- Tailwind Config -->
     <script>
       tailwind.config = {
         theme: {
@@ -30,298 +34,340 @@
         }
       }
     </script>
+    <!-- React Libraries -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <!-- Babel for JSX Transpilation -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-brand-stone font-sans">
     <div id="root"></div>
-    <script type="module">
-        import React from 'https://esm.sh/react@18.2.0';
-        import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
 
-        // --- Icon Components ---
-        
-        const MortarPestleIcon = (props) => (
-          React.createElement('svg', { xmlns: 'http://www.w3.org/2000/svg', viewBox: '0 0 24 24', fill: 'currentColor', ...props },
-            React.createElement('path', { d: 'M2,16H22V18H2V16ZM20,8H4V14H20V8ZM13.5,4L16,2H8L10.5,4H13.5Z' })
-          )
-        );
+    <script type="text/babel">
+      // From components/icons.tsx
+      const EmailIcon = (props) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
+          <path d="M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" />
+          <path d="M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" />
+        </svg>
+      );
 
-        const EmailIcon = (props) => (
-          React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
-            React.createElement('path', { d: "M3 4a2 2 0 00-2 2v1.161l8.441 4.221a1.25 1.25 0 001.118 0L19 7.162V6a2 2 0 00-2-2H3z" }),
-            React.createElement('path', { d: "M19 8.839l-7.77 3.885a2.75 2.75 0 01-2.46 0L1 8.839V14a2 2 0 002 2h14a2 2 0 002-2V8.839z" })
-          )
-        );
+      const PhoneIcon = (props) => (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" {...props}>
+          <path d="M16.32,14.88a1,1,0,0,1-1.07.25,12.72,12.72,0,0,1-3.41-2.14,13.25,13.25,0,0,1-4.28-4.28,12.72,12.72,0,0,1-2.14-3.41,1,1,0,0,1,.25-1.07l1-1.29A1,1,0,0,1,8.2,2.68L9.82,4.3a1,1,0,0,1-.19,1.25l-1.53,1.3a.52.52,0,0,0-.09.73,11.46,11.46,0,0,0,5.08,5.08.52.52,0,0,0,.73-.09l1.3-1.53a1,1,0,0,1,1.25-.19l1.62,1.62a1,1,0,0,1-.33,1.53Z" />
+        </svg>
+      );
 
-        const PhoneIcon = (props) => (
-          React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
-            React.createElement('path', { d: "M16.32,14.88a1,1,0,0,1-1.07.25,12.72,12.72,0,0,1-3.41-2.14,13.25,13.25,0,0,1-4.28-4.28,12.72,12.72,0,0,1-2.14-3.41,1,1,0,0,1,.25-1.07l1-1.29A1,1,0,0,1,8.2,2.68L9.82,4.3a1,1,0,0,1-.19,1.25l-1.53,1.3a.52.52,0,0,0-.09.73,11.46,11.46,0,0,0,5.08,5.08.52.52,0,0,0,.73-.09l1.3-1.53a1,1,0,0,1,1.25-.19l1.62,1.62a1,1,0,0,1-.33,1.53Z" })
-          )
-        );
+      const TruckIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-9m17.25 9v-9m-17.25-9h9.563c.621 0 1.125.504 1.125 1.125v4.5m-10.688 0H18.375c.621 0 1.125.504 1.125 1.125v.625" />
+          </svg>
+      );
 
-        const TruckIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-9m17.25 9v-9m-17.25-9h9.563c.621 0 1.125.504 1.125 1.125v4.5m-10.688 0H18.375c.621 0 1.125.504 1.125 1.125v.625" })
-            )
-        );
+      const ClipboardCheckIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" />
+          </svg>
+      );
 
-        const ClipboardCheckIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" })
-            )
-        );
+      const UserGroupIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.288 0A3 3 0 017.18 15.05l-2.43 1.62a3 3 0 00-4.682 2.72m7.288-2.72m-7.288 0l2.43-1.62a3 3 0 014.682 2.72m6.096-2.72m-8.528 0l-2.43 1.62m2.43-1.62a3 3 0 014.682 0m-4.682 0l2.43 1.62M12 6.75a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM12 6.75a3.375 3.375 0 10-6.75 0 3.375 3.375 0 006.75 0zm-6.75 0a3.375 3.375 0 106.75 0 3.375 3.375 0 00-6.75 0z" />
+          </svg>
+      );
 
-        const UserGroupIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.288 0A3 3 0 017.18 15.05l-2.43 1.62a3 3 0 00-4.682 2.72m7.288-2.72m-7.288 0l2.43-1.62a3 3 0 014.682 2.72m6.096-2.72m-8.528 0l-2.43 1.62m2.43-1.62a3 3 0 014.682 0m-4.682 0l2.43 1.62M12 6.75a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM12 6.75a3.375 3.375 0 10-6.75 0 3.375 3.375 0 006.75 0zm-6.75 0a3.375 3.375 0 106.75 0 3.375 3.375 0 00-6.75 0z" })
-            )
-        );
+      const StarIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
+              <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z" clipRule="evenodd" />
+          </svg>
+      );
 
-        const StarIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", ...props },
-                React.createElement('path', { fillRule: "evenodd", d: "M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z", clipRule: "evenodd" })
-            )
-        );
+      const MapPinIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+      );
 
-        const MapPinIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" }),
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" })
-            )
-        );
+      const ClockIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" {...props}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+      );
 
-        const ClockIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
-                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" })
-            )
-        );
-        
-        const FacebookIcon = (props) => (
-            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", ...props },
-                React.createElement('path', { d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" })
-            )
-        );
+      const FacebookIcon = (props) => (
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" {...props}>
+              <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" />
+          </svg>
+      );
 
+      // From components/LeadForm.tsx
+      const LeadForm = () => {
+          const [fullName, setFullName] = React.useState('');
+          const [email, setEmail] = React.useState('');
+          const [message, setMessage] = React.useState('');
+          const [submitted, setSubmitted] = React.useState(false);
 
-        // --- App Components ---
+          const handleSubmit = (e) => {
+              e.preventDefault();
+              console.log({ fullName, email, message });
+              setSubmitted(true);
+          };
 
-        const LeadForm = () => {
-            const [fullName, setFullName] = React.useState('');
-            const [email, setEmail] = React.useState('');
-            const [message, setMessage] = React.useState('');
-            const [submitted, setSubmitted] = React.useState(false);
+          if (submitted) {
+              return (
+                  <div className="bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20 text-center text-white">
+                      <h3 className="text-2xl font-serif font-bold mb-4">Thank You!</h3>
+                      <p>Your message has been sent. We will get back to you shortly.</p>
+                  </div>
+              );
+          }
 
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                console.log({ fullName, email, message });
-                setSubmitted(true);
-            };
+          return (
+              <div className="bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20">
+                  <h3 className="text-2xl font-serif font-bold text-white mb-6 text-center">Contact Us</h3>
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                      <div>
+                          <label htmlFor="fullName" className="block text-white text-sm font-bold mb-2">Full Name</label>
+                          <input id="fullName" type="text" value={fullName} onChange={(e) => setFullName(e.target.value)} className="w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition" placeholder="John Doe" required />
+                      </div>
+                      <div>
+                          <label htmlFor="email" className="block text-white text-sm font-bold mb-2">Email Address</label>
+                          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition" placeholder="you@example.com" required />
+                      </div>
+                      <div>
+                          <label htmlFor="message" className="block text-white text-sm font-bold mb-2">Message</label>
+                          <textarea id="message" value={message} onChange={(e) => setMessage(e.target.value)} className="w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-white/50 transition" placeholder="How can we help?" required />
+                      </div>
+                      <button type="submit" className="w-full bg-brand-teal text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-teal-dark transition-colors transform hover:scale-105">Send Message</button>
+                  </form>
+              </div>
+          );
+      };
+      
+      // From components/Header.tsx
+      const Header = () => {
+          return (
+              <header className="bg-white/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md">
+                  <div className="container mx-auto px-6 py-3 flex justify-between items-center">
+                      <div className="flex items-center min-w-0">
+                          {/* Logo removed as per request */}
+                          <h1 className="text-xl md:text-2xl font-serif font-bold text-brand-teal truncate">Wellness Center Pharmacy</h1>
+                      </div>
+                      <nav className="hidden md:flex items-center space-x-2">
+                          <a href="#services" className="font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors">Services</a>
+                          <a href="#reviews" className="font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors">About</a>
+                          <a href="#location" className="font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors">Contact</a>
+                      </nav>
+                      <a href="tel:+17189560060" className="bg-brand-teal text-white font-bold py-2 px-4 rounded-full hover:bg-brand-teal-dark transition-colors text-sm md:text-base whitespace-nowrap">Call Us</a>
+                  </div>
+              </header>
+          );
+      };
 
-            if (submitted) {
-                return React.createElement('div', { className: "bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20 text-center text-white" },
-                    React.createElement('h3', { className: "text-2xl font-serif font-bold mb-4" }, "Thank You!"),
-                    React.createElement('p', null, "Your message has been sent. We will get back to you shortly.")
-                );
-            }
+      // From components/Hero.tsx
+      const Hero = () => {
+          const heroImageUrl = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80";
 
-            return React.createElement('div', { className: "bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20" },
-                React.createElement('h3', { className: "text-2xl font-serif font-bold text-white mb-6 text-center" }, "Contact Us"),
-                React.createElement('form', { onSubmit: handleSubmit, className: "space-y-4" },
-                    React.createElement('div', null,
-                        React.createElement('label', { htmlFor: "fullName", className: "block text-white text-sm font-bold mb-2" }, "Full Name"),
-                        React.createElement('input', { id: "fullName", type: "text", value: fullName, onChange: (e) => setFullName(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "John Doe", required: true })
-                    ),
-                    React.createElement('div', null,
-                        React.createElement('label', { htmlFor: "email", className: "block text-white text-sm font-bold mb-2" }, "Email Address"),
-                        React.createElement('input', { id: "email", type: "email", value: email, onChange: (e) => setEmail(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "you@example.com", required: true })
-                    ),
-                    React.createElement('div', null,
-                        React.createElement('label', { htmlFor: "message", className: "block text-white text-sm font-bold mb-2" }, "Message"),
-                        React.createElement('textarea', { id: "message", value: message, onChange: (e) => setMessage(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "How can we help?", required: true })
-                    ),
-                    React.createElement('button', { type: "submit", className: "w-full bg-brand-teal text-white font-bold py-3 px-4 rounded-lg hover:bg-brand-teal-dark transition-colors transform hover:scale-105" }, "Send Message")
-                )
-            );
-        };
+          return (
+              <section id="home" className="relative min-h-screen bg-cover bg-center flex items-center pt-24 pb-12" style={{ backgroundImage: `url(${heroImageUrl})` }}>
+                  <div className="absolute inset-0 bg-black bg-opacity-60" />
+                  <div className="container mx-auto px-6 relative z-10">
+                      <div className="grid md:grid-cols-2 gap-8 items-center">
+                          <div className="text-white text-center md:text-left">
+                              <h1 className="text-4xl md:text-6xl font-serif font-extrabold leading-tight mb-4">Your Partner in Health & Wellness</h1>
+                              <p className="text-lg md:text-xl font-sans mb-8">Personalized care from your trusted local pharmacy in Astoria. Quick, friendly, and professional service for you and your family.</p>
+                          </div>
+                          <div>
+                              <LeadForm />
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          );
+      };
 
-        const Header = () => {
-            return React.createElement('header', { className: "bg-white/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md" },
-                React.createElement('div', { className: "container mx-auto px-6 py-3 flex justify-between items-center" },
-                    React.createElement('div', { className: "flex items-center space-x-2 min-w-0" },
-                        React.createElement(MortarPestleIcon, { className: "h-8 w-8 text-brand-teal flex-shrink-0" }),
-                        React.createElement('h1', { className: "text-xl md:text-2xl font-serif font-bold text-brand-teal truncate" }, "Wellness Center Pharmacy")
-                    ),
-                    React.createElement('nav', { className: "hidden md:flex items-center space-x-2" },
-                        React.createElement('a', { href: "#services", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "Services"),
-                        React.createElement('a', { href: "#reviews", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "About"),
-                        React.createElement('a', { href: "#location", className: "font-semibold text-brand-teal-dark hover:bg-brand-teal/20 px-4 py-2 rounded-full transition-colors" }, "Contact")
-                    ),
-                    React.createElement('a', { href: "tel:+17189560060", className: "bg-brand-teal text-white font-bold py-2 px-4 rounded-full hover:bg-brand-teal-dark transition-colors text-sm md:text-base whitespace-nowrap" }, "Call Us")
-                )
-            );
-        };
+      // From components/Services.tsx
+      const servicesData = [
+        { icon: TruckIcon, title: 'Free Local Delivery', description: 'Get your medications delivered to your doorstep, free of charge in the Astoria area.' },
+        { icon: ClipboardCheckIcon, title: 'Prescription Services', description: 'Fast and accurate prescription filling, refills, and medication synchronization.' },
+        { icon: UserGroupIcon, title: 'Personalized Care', description: 'Our knowledgeable pharmacists are always here to answer your questions and provide consultations.' },
+      ];
 
-        const Hero = () => {
-            const heroImageUrl = "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=1920&q=80";
+      const Services = () => {
+          return (
+              <section id="services" className="py-20 bg-white">
+                  <div className="container mx-auto px-6">
+                      <div className="text-center mb-12">
+                          <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-teal">Our Commitment to You</h2>
+                          <p className="mt-4 text-lg text-gray-600">Exceptional care and convenience, every step of the way.</p>
+                      </div>
+                      <div className="grid md:grid-cols-3 gap-8">
+                          {servicesData.map((service, index) => {
+                              const Icon = service.icon;
+                              return (
+                                  <div key={index} className="text-center p-8 bg-brand-stone rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
+                                      <div className="flex justify-center items-center mb-4">
+                                          <div className="bg-brand-teal p-4 rounded-full">
+                                              <Icon className="h-8 w-8 text-white" />
+                                          </div>
+                                      </div>
+                                      <h3 className="text-xl font-serif font-bold text-brand-teal mb-2">{service.title}</h3>
+                                      <p className="text-gray-700">{service.description}</p>
+                                  </div>
+                              );
+                          })}
+                      </div>
+                  </div>
+              </section>
+          );
+      };
 
-            return React.createElement('section', { id: "home", className: "relative min-h-screen bg-cover bg-center flex items-center pt-24 pb-12", style: { backgroundImage: `url(${heroImageUrl})` } },
-                React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-60" }),
-                React.createElement('div', { className: "container mx-auto px-6 relative z-10" },
-                    React.createElement('div', { className: "grid md:grid-cols-2 gap-8 items-center" },
-                        React.createElement('div', { className: "text-white text-center md:text-left" },
-                            React.createElement('h1', { className: "text-4xl md:text-6xl font-serif font-extrabold leading-tight mb-4" }, "Your Partner in Health & Wellness"),
-                            React.createElement('p', { className: "text-lg md:text-xl font-sans mb-8" }, "Personalized care from your trusted local pharmacy in Astoria. Quick, friendly, and professional service for you and your family.")
-                        ),
-                        React.createElement('div', null, React.createElement(LeadForm))
-                    )
-                )
-            );
-        };
-        
-        const Services = () => {
-            const services = [
-              { icon: TruckIcon, title: 'Free Local Delivery', description: 'Get your medications delivered to your doorstep, free of charge in the Astoria area.' },
-              { icon: ClipboardCheckIcon, title: 'Prescription Services', description: 'Fast and accurate prescription filling, refills, and medication synchronization.' },
-              { icon: UserGroupIcon, title: 'Personalized Care', description: 'Our knowledgeable pharmacists are always here to answer your questions and provide consultations.' },
-            ];
+      // From components/Testimonials.tsx
+      const testimonialsData = [
+          { author: 'Han Solo', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1027/100/100', rating: 5, text: 'Great pharmacy! Always prompt and efficient service! Very knowledgeable and explain each medication to me including instructional use. Love supporting local pharmacies!' },
+          { author: 'FARES “Freddy” Freddy', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1005/100/100', rating: 5, text: 'Amazing service and specially the crew are great keep it up.' },
+          { author: 'Sarah Hardy', role: 'Customer', photoUrl: 'https://picsum.photos/id/1011/100/100', rating: 5, text: 'Well stocked and staff are always so friendly :)' },
+      ];
 
-            return React.createElement('section', { id: "services", className: "py-20 bg-white" },
-                React.createElement('div', { className: "container mx-auto px-6" },
-                    React.createElement('div', { className: "text-center mb-12" },
-                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal" }, "Our Commitment to You"),
-                        React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "Exceptional care and convenience, every step of the way.")
-                    ),
-                    React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
-                        services.map((service, index) => {
-                            const Icon = service.icon;
-                            return React.createElement('div', { key: index, className: "text-center p-8 bg-brand-stone rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" },
-                                React.createElement('div', { className: "flex justify-center items-center mb-4" },
-                                    React.createElement('div', { className: "bg-brand-teal p-4 rounded-full" },
-                                        React.createElement(Icon, { className: "h-8 w-8 text-white" })
-                                    )
-                                ),
-                                React.createElement('h3', { className: "text-xl font-serif font-bold text-brand-teal mb-2" }, service.title),
-                                React.createElement('p', { className: "text-gray-700" }, service.description)
-                            );
-                        })
-                    )
-                )
-            );
-        };
+      const Rating = ({ rating }) => {
+          return (
+              <div className="flex items-center">
+                  {[...Array(5)].map((_, i) => <StarIcon key={i} className={`h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}`} />)}
+              </div>
+          );
+      };
 
-        const Testimonials = () => {
-            const testimonialsData = [
-                { author: 'Han Solo', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1027/100/100', rating: 5, text: 'Great pharmacy! Always prompt and efficient service! Very knowledgeable and explain each medication to me including instructional use. Love supporting local pharmacies!' },
-                { author: 'FARES “Freddy” Freddy', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1005/100/100', rating: 5, text: 'Amazing service and specially the crew are great keep it up.' },
-                { author: 'Sarah Hardy', role: 'Customer', photoUrl: 'https://picsum.photos/id/1011/100/100', rating: 5, text: 'Well stocked and staff are always so friendly :)' },
-            ];
+      const Testimonials = () => {
+          return (
+              <section id="reviews" className="py-20 bg-brand-stone">
+                  <div className="container mx-auto px-6">
+                      <div className="text-center mb-12">
+                          <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-teal">What Our Patients Say</h2>
+                          <p className="mt-4 text-lg text-gray-600">We're proud to be a trusted part of the Astoria community.</p>
+                      </div>
+                      <div className="grid md:grid-cols-3 gap-8">
+                          {testimonialsData.map((testimonial, index) => (
+                              <div key={index} className="bg-white p-8 rounded-lg shadow-lg flex flex-col">
+                                  <div className="flex-grow">
+                                      <p className="text-gray-600 mb-6 italic">"{testimonial.text}"</p>
+                                  </div>
+                                  <div className="flex items-center mt-auto">
+                                      <img src={testimonial.photoUrl} alt={testimonial.author} className="h-14 w-14 rounded-full mr-4 object-cover" />
+                                      <div>
+                                          <h4 className="font-bold text-gray-800">{testimonial.author}</h4>
+                                          <p className="text-sm text-gray-500">{testimonial.role}</p>
+                                          <Rating rating={testimonial.rating} />
+                                      </div>
+                                  </div>
+                              </div>
+                          ))}
+                      </div>
+                  </div>
+              </section>
+          );
+      };
 
-            const Rating = ({ rating }) => {
-                return React.createElement('div', { className: "flex items-center" },
-                    [...Array(5)].map((_, i) => React.createElement(StarIcon, { key: i, className: `h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}` }))
-                );
-            };
+      // From components/Location.tsx
+      const Location = () => {
+          const directionsUrl = "https://www.google.com/maps/place/Wellness+Center+Pharmacy/@40.7585002,-73.9175436,17z/data=!4m15!1m8!3m7!1s0x89c25f3b87f79a59:0xd383d19527349e50!2sWellness+Center+Pharmacy!8m2!3d40.7588358!4d-73.9184176!10e5!16s%2Fg%2F1tq6k_d6!3m5!1s0x89c25f3b87f79a59:0xd383d19527349e50!8m2!3d40.7588358!4d-73.9184176!16s%2Fg%2F1tq6k_d6?entry=ttu&g_ep=EgoyMDI2MDIwOC4wIKXMDSoASAFQAw%3D%3D";
+          
+          return (
+              <section id="location" className="py-20 bg-white">
+                  <div className="container mx-auto px-6">
+                      <div className="grid md:grid-cols-2 gap-12 items-center">
+                          <div className="text-center md:text-left">
+                              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-teal mb-6">Visit Us in Astoria</h2>
+                              <div className="space-y-4 text-lg text-gray-700">
+                                  <div className="flex items-center justify-center md:justify-start">
+                                      <MapPinIcon className="h-6 w-6 mr-3 text-brand-teal" />
+                                      <span>40-13 Broadway, Astoria, NY 11103</span>
+                                  </div>
+                                  <div className="flex items-center justify-center md:justify-start">
+                                      <ClockIcon className="h-6 w-6 mr-3 text-brand-teal" />
+                                      <span>Open Daily • Closes 7:00 PM</span>
+                                  </div>
+                              </div>
+                              <a href={directionsUrl} target="_blank" rel="noopener noreferrer" className="mt-8 inline-block bg-brand-teal text-white font-bold py-3 px-6 rounded-full hover:bg-brand-teal-dark transition-colors">
+                                  Get Directions
+                              </a>
+                          </div>
+                          <div className="rounded-lg overflow-hidden shadow-2xl h-80">
+                              <iframe 
+                                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.6111068213695!2d-73.92348722369486!3d40.77063897138769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f1870a3111d%3A0x34139281a80693a1!2sWellness%20Center%20Pharmacy!5e0!3m2!1sen!2sus!4v1701192994967" 
+                                  width="100%" 
+                                  height="100%" 
+                                  style={{ border: 0 }} 
+                                  allowFullScreen={false} 
+                                  loading="lazy" 
+                                  referrerPolicy="no-referrer-when-downgrade" 
+                                  title="Wellness Center Pharmacy Location"
+                              ></iframe>
+                          </div>
+                      </div>
+                  </div>
+              </section>
+          );
+      };
 
-            return React.createElement('section', { id: "reviews", className: "py-20 bg-brand-stone" },
-                React.createElement('div', { className: "container mx-auto px-6" },
-                    React.createElement('div', { className: "text-center mb-12" },
-                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal" }, "What Our Patients Say"),
-                        React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "We're proud to be a trusted part of the Astoria community.")
-                    ),
-                    React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
-                        testimonialsData.map((testimonial, index) => (
-                            React.createElement('div', { key: index, className: "bg-white p-8 rounded-lg shadow-lg flex flex-col" },
-                                React.createElement('div', { className: "flex-grow" },
-                                    React.createElement('p', { className: "text-gray-600 mb-6 italic" }, `"${testimonial.text}"`)
-                                ),
-                                React.createElement('div', { className: "flex items-center mt-auto" },
-                                    React.createElement('img', { src: testimonial.photoUrl, alt: testimonial.author, className: "h-14 w-14 rounded-full mr-4 object-cover" }),
-                                    React.createElement('div', null,
-                                        React.createElement('h4', { className: "font-bold text-gray-800" }, testimonial.author),
-                                        React.createElement('p', { className: "text-sm text-gray-500" }, testimonial.role),
-                                        React.createElement(Rating, { rating: testimonial.rating })
-                                    )
-                                )
-                            )
-                        ))
-                    )
-                )
-            );
-        };
-        
-        const Location = () => {
-            return React.createElement('section', { id: "location", className: "py-20 bg-white" },
-                React.createElement('div', { className: "container mx-auto px-6" },
-                    React.createElement('div', { className: "grid md:grid-cols-2 gap-12 items-center" },
-                        React.createElement('div', { className: "text-center md:text-left" },
-                            React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-teal mb-6" }, "Visit Us in Astoria"),
-                            React.createElement('div', { className: "space-y-4 text-lg text-gray-700" },
-                                React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
-                                    React.createElement(MapPinIcon, { className: "h-6 w-6 mr-3 text-brand-teal" }),
-                                    React.createElement('span', null, "40-13 Broadway, Astoria, NY 11103")
-                                ),
-                                React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
-                                    React.createElement(ClockIcon, { className: "h-6 w-6 mr-3 text-brand-teal" }),
-                                    React.createElement('span', null, "Open Daily • Closes 7:00 PM")
-                                )
-                            ),
-                            React.createElement('a', { href: "https://www.google.com/maps/place/Wellness+Center+Pharmacy/@40.7587684,-73.9185521,17z/data!4m6!3m5!1s0x89c25f3b87f79a59:0xd383d19527349e50!8m2!3d40.7588358!4d-73.9184176!16s%2Fg%2F1tq6k_d6?entry=ttu&g_ep=EgoyMDI2MDIwOC4wIKXMDSoASAFQAw%3D%3D", target: "_blank", rel: "noopener noreferrer", className: "mt-8 inline-block bg-brand-teal text-white font-bold py-3 px-6 rounded-full hover:bg-brand-teal-dark transition-colors" }, "Get Directions")
-                        ),
-                        React.createElement('div', { className: "rounded-lg overflow-hidden shadow-2xl h-80" },
-                            React.createElement('iframe', { src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.6111068213695!2d-73.92348722369486!3d40.77063897138769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f1870a3111d%3A0x34139281a80693a1!2sWellness%20Center%20Pharmacy!5e0!3m2!1sen!2sus!4v1701192994967", width: "100%", height: "100%", style: { border: 0 }, allowFullScreen: false, loading: "lazy", referrerPolicy: "no-referrer-when-downgrade", title: "Wellness Center Pharmacy Location" })
-                        )
-                    )
-                )
-            );
-        };
-        
-        const Footer = () => {
-            return React.createElement('footer', { className: "bg-brand-teal text-white" },
-                React.createElement('div', { className: "container mx-auto px-6 py-8" },
-                    React.createElement('div', { className: "flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0" },
-                        React.createElement('div', { className: "mb-6 md:mb-0" },
-                            React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 mb-2" },
-                                React.createElement(MortarPestleIcon, { className: "h-8 w-8 text-white" }),
-                                React.createElement('h1', { className: "text-xl font-serif font-bold" }, "Wellness Center Pharmacy")
-                            ),
-                            React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-2" },
-                                React.createElement(EmailIcon, { className: "h-4 w-4" }),
-                                React.createElement('a', { href: "mailto:wellnesscenterpharmacy@gmail.com", className:"hover:underline" }, "wellnesscenterpharmacy@gmail.com")
-                            ),
-                             React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-1" },
-                                React.createElement(PhoneIcon, { className: "h-4 w-4" }),
-                                React.createElement('a', { href: "tel:+17189560060", className:"hover:underline" }, "(718) 956-0060")
-                            )
-                        ),
-                        React.createElement('div', { className: "flex items-center space-x-4" },
-                            React.createElement('a', { href: "https://www.facebook.com/p/Wellness-Center-Pharmacy-100063623944414/", target: "_blank", rel: "noopener noreferrer", "aria-label": "Facebook", className: "text-white hover:text-stone-300 transition-colors" },
-                                React.createElement(FacebookIcon, { className: "h-7 w-7" })
-                            )
-                        )
-                    ),
-                    React.createElement('div', { className: "border-t border-white/20 mt-8 pt-6 text-center text-sm text-stone-200" },
-                        React.createElement('p', null, `© ${new Date().getFullYear()} Wellness Center Pharmacy. All Rights Reserved.`)
-                    )
-                )
-            );
-        };
-        
-        const App = () => {
-            return React.createElement('div', { className: "bg-brand-stone text-gray-800" },
-                React.createElement(Header),
-                React.createElement('main', null,
-                    React.createElement(Hero),
-                    React.createElement(Services),
-                    React.createElement(Testimonials),
-                    React.createElement(Location)
-                ),
-                React.createElement(Footer)
-            );
-        };
+      // From components/Footer.tsx
+      const Footer = () => {
+          return (
+              <footer className="bg-brand-teal text-white">
+                  <div className="container mx-auto px-6 py-8">
+                      <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-6 md:space-y-0">
+                          <div className="mb-6 md:mb-0">
+                              <div className="flex items-center justify-center md:justify-start mb-2">
+                                   {/* Logo removed as per request */}
+                                  <h1 className="text-xl font-serif font-bold">Wellness Center Pharmacy</h1>
+                              </div>
+                              <div className="flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-2">
+                                  <EmailIcon className="h-4 w-4" />
+                                  <a href="mailto:wellnesscenterpharmacy@gmail.com" className="hover:underline">wellnesscenterpharmacy@gmail.com</a>
+                              </div>
+                               <div className="flex items-center justify-center md:justify-start space-x-2 text-sm text-stone-200 mt-1">
+                                  <PhoneIcon className="h-4 w-4" />
+                                  <a href="tel:+17189560060" className="hover:underline">(718) 956-0060</a>
+                              </div>
+                          </div>
+                          <div className="flex items-center space-x-4">
+                              <a href="https://www.facebook.com/p/Wellness-Center-Pharmacy-100063623944414/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white hover:text-stone-300 transition-colors">
+                                  <FacebookIcon className="h-7 w-7" />
+                              </a>
+                          </div>
+                      </div>
+                      <div className="border-t border-white/20 mt-8 pt-6 text-center text-sm text-stone-200">
+                          <p>© {new Date().getFullYear()} Wellness Center Pharmacy. All Rights Reserved.</p>
+                      </div>
+                  </div>
+              </footer>
+          );
+      };
 
-        // --- Render Application ---
-        const rootElement = document.getElementById('root');
-        const root = ReactDOM.createRoot(rootElement);
-        root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
+      // From App.tsx
+      const App = () => {
+          return (
+              <div className="bg-brand-stone text-gray-800">
+                  <Header />
+                  <main>
+                      <Hero />
+                      <Services />
+                      <Testimonials />
+                      <Location />
+                  </main>
+                  <Footer />
+              </div>
+          );
+      };
+
+      // From index.tsx (Mounting logic)
+      const rootElement = document.getElementById('root');
+      const root = ReactDOM.createRoot(rootElement);
+      root.render(
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      );
     </script>
 </body>
 </html>
