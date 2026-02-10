@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wellness Center Pharmacy | Astoria, NY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'brand-sage': '#4A5D4E',
+              'brand-stone': '#F4F1EA',
+            },
+            fontFamily: {
+              'sans': ['Inter', 'sans-serif'],
+              'serif': ['Playfair Display', 'serif'],
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-brand-stone font-sans">
+    <div id="root"></div>
+    <script type="module">
+        import React from 'https://esm.sh/react@18.2.0';
+        import ReactDOM from 'https://esm.sh/react-dom@18.2.0/client';
+
+        // --- Icon Components ---
+
+        const LeafIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20", fill: "currentColor", ...props },
+                React.createElement('path', { fillRule: "evenodd", d: "M10 2a.75.75 0 01.75.75V3a2 2 0 00-1.5 0V2.75A.75.75 0 0110 2zM5.03 5.03a.75.75 0 010-1.061 3.5 3.5 0 014.95 0 .75.75 0 01-1.06 1.06A2 2 0 005.03 5.03zM3 10a.75.75 0 01.75-.75H4a2 2 0 000 1.5H3.75A.75.75 0 013 10zm11.97 0a.75.75 0 01.75.75v.25a2 2 0 000-1.5v-.25a.75.75 0 01.75-.75zm-5.455 3.96a.75.75 0 011.06 0 3.5 3.5 0 010 4.95.75.75 0 01-1.06-1.06 2 2 0 000-2.829z", clipRule: "evenodd" }),
+                React.createElement('path', { d: "M10 5.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" })
+            )
+        );
+
+        const TruckIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-9m17.25 9v-9m-17.25-9h9.563c.621 0 1.125.504 1.125 1.125v4.5m-10.688 0H18.375c.621 0 1.125.504 1.125 1.125v.625" })
+            )
+        );
+
+        const ClipboardCheckIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 019 9v.375M10.125 2.25A3.375 3.375 0 0113.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 013.375 3.375M9 15l2.25 2.25L15 12" })
+            )
+        );
+
+        const UserGroupIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.288 0A3 3 0 017.18 15.05l-2.43 1.62a3 3 0 00-4.682 2.72m7.288-2.72m-7.288 0l2.43-1.62a3 3 0 014.682 2.72m6.096-2.72m-8.528 0l-2.43 1.62m2.43-1.62a3 3 0 014.682 0m-4.682 0l2.43 1.62M12 6.75a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zM12 6.75a3.375 3.375 0 10-6.75 0 3.375 3.375 0 006.75 0zm-6.75 0a3.375 3.375 0 106.75 0 3.375 3.375 0 00-6.75 0z" })
+            )
+        );
+
+        const StarIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", ...props },
+                React.createElement('path', { fillRule: "evenodd", d: "M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.007z", clipRule: "evenodd" })
+            )
+        );
+
+        const MapPinIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" }),
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" })
+            )
+        );
+
+        const ClockIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", strokeWidth: 1.5, stroke: "currentColor", ...props },
+                React.createElement('path', { strokeLinecap: "round", strokeLinejoin: "round", d: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" })
+            )
+        );
+        
+        const FacebookIcon = (props) => (
+            React.createElement('svg', { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "currentColor", ...props },
+                React.createElement('path', { d: "M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" })
+            )
+        );
+
+
+        // --- App Components ---
+
+        const LeadForm = () => {
+            const [fullName, setFullName] = React.useState('');
+            const [email, setEmail] = React.useState('');
+            const [message, setMessage] = React.useState('');
+            const [submitted, setSubmitted] = React.useState(false);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                console.log({ fullName, email, message });
+                setSubmitted(true);
+            };
+
+            if (submitted) {
+                return React.createElement('div', { className: "bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20 text-center text-white" },
+                    React.createElement('h3', { className: "text-2xl font-serif font-bold mb-4" }, "Thank You!"),
+                    React.createElement('p', null, "Your message has been sent. We will get back to you shortly.")
+                );
+            }
+
+            return React.createElement('div', { className: "bg-white/30 backdrop-blur-lg p-8 rounded-2xl shadow-2xl border border-white/20" },
+                React.createElement('h3', { className: "text-2xl font-serif font-bold text-white mb-6 text-center" }, "Contact Us"),
+                React.createElement('form', { onSubmit: handleSubmit, className: "space-y-4" },
+                    React.createElement('div', null,
+                        React.createElement('label', { htmlFor: "fullName", className: "block text-white text-sm font-bold mb-2" }, "Full Name"),
+                        React.createElement('input', { id: "fullName", type: "text", value: fullName, onChange: (e) => setFullName(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "John Doe", required: true })
+                    ),
+                    React.createElement('div', null,
+                        React.createElement('label', { htmlFor: "email", className: "block text-white text-sm font-bold mb-2" }, "Email Address"),
+                        React.createElement('input', { id: "email", type: "email", value: email, onChange: (e) => setEmail(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "you@example.com", required: true })
+                    ),
+                    React.createElement('div', null,
+                        React.createElement('label', { htmlFor: "message", className: "block text-white text-sm font-bold mb-2" }, "Message"),
+                        React.createElement('textarea', { id: "message", value: message, onChange: (e) => setMessage(e.target.value), className: "w-full bg-white/20 text-white placeholder-gray-200 border border-white/30 rounded-lg py-2 px-4 h-24 focus:outline-none focus:ring-2 focus:ring-white/50 transition", placeholder: "How can we help?", required: true })
+                    ),
+                    React.createElement('button', { type: "submit", className: "w-full bg-brand-sage text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-90 transition-colors transform hover:scale-105" }, "Send Message")
+                )
+            );
+        };
+
+        const Header = () => {
+            return React.createElement('header', { className: "bg-white/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50 shadow-md" },
+                React.createElement('div', { className: "container mx-auto px-6 py-3 flex justify-between items-center" },
+                    React.createElement('div', { className: "flex items-center space-x-2" },
+                        React.createElement(LeafIcon, { className: "h-8 w-8 text-brand-sage" }),
+                        React.createElement('h1', { className: "text-xl md:text-2xl font-serif font-bold text-brand-sage" }, "Wellness Center Pharmacy")
+                    ),
+                    React.createElement('a', { href: "tel:+17189560060", className: "bg-brand-sage text-white font-bold py-2 px-4 rounded-full hover:bg-opacity-90 transition-colors text-sm md:text-base" }, "Call Us")
+                )
+            );
+        };
+
+        const Hero = () => {
+            const heroImageUrl = "https://images.unsplash.com/photo-1585435557343-3c9027883c8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+
+            return React.createElement('section', { id: "home", className: "relative min-h-screen bg-cover bg-center flex items-center pt-24 pb-12", style: { backgroundImage: `url(${heroImageUrl})` } },
+                React.createElement('div', { className: "absolute inset-0 bg-black bg-opacity-50" }),
+                React.createElement('div', { className: "container mx-auto px-6 relative z-10" },
+                    React.createElement('div', { className: "grid md:grid-cols-2 gap-8 items-center" },
+                        React.createElement('div', { className: "text-white text-center md:text-left" },
+                            React.createElement('h1', { className: "text-4xl md:text-6xl font-serif font-extrabold leading-tight mb-4" }, "Your Partner in Health & Wellness"),
+                            React.createElement('p', { className: "text-lg md:text-xl font-sans mb-8" }, "Personalized care from your trusted local pharmacy in Astoria. Quick, friendly, and professional service for you and your family.")
+                        ),
+                        React.createElement('div', null, React.createElement(LeadForm))
+                    )
+                )
+            );
+        };
+        
+        const Services = () => {
+            const services = [
+              { icon: TruckIcon, title: 'Free Local Delivery', description: 'Get your medications delivered to your doorstep, free of charge in the Astoria area.' },
+              { icon: ClipboardCheckIcon, title: 'Prescription Services', description: 'Fast and accurate prescription filling, refills, and medication synchronization.' },
+              { icon: UserGroupIcon, title: 'Personalized Care', description: 'Our knowledgeable pharmacists are always here to answer your questions and provide consultations.' },
+            ];
+
+            return React.createElement('section', { id: "services", className: "py-20 bg-white" },
+                React.createElement('div', { className: "container mx-auto px-6" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage" }, "Our Commitment to You"),
+                        React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "Exceptional care and convenience, every step of the way.")
+                    ),
+                    React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
+                        services.map((service, index) => {
+                            const Icon = service.icon;
+                            return React.createElement('div', { key: index, className: "text-center p-8 bg-brand-stone rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300" },
+                                React.createElement('div', { className: "flex justify-center items-center mb-4" },
+                                    React.createElement('div', { className: "bg-brand-sage p-4 rounded-full" },
+                                        React.createElement(Icon, { className: "h-8 w-8 text-white" })
+                                    )
+                                ),
+                                React.createElement('h3', { className: "text-xl font-serif font-bold text-brand-sage mb-2" }, service.title),
+                                React.createElement('p', { className: "text-gray-700" }, service.description)
+                            );
+                        })
+                    )
+                )
+            );
+        };
+
+        const Testimonials = () => {
+            const testimonialsData = [
+                { author: 'Han Solo', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1027/100/100', rating: 5, text: 'Great pharmacy! Always prompt and efficient service! Very knowledgeable and explain each medication to me including instructional use. Love supporting local pharmacies!' },
+                { author: 'FARES “Freddy” Freddy', role: 'Local Guide', photoUrl: 'https://picsum.photos/id/1005/100/100', rating: 5, text: 'Amazing service and specially the crew are great keep it up.' },
+                { author: 'Sarah Hardy', role: 'Customer', photoUrl: 'https://picsum.photos/id/1011/100/100', rating: 5, text: 'Well stocked and staff are always so friendly :)' },
+            ];
+
+            const Rating = ({ rating }) => {
+                return React.createElement('div', { className: "flex items-center" },
+                    [...Array(5)].map((_, i) => React.createElement(StarIcon, { key: i, className: `h-5 w-5 ${i < rating ? 'text-yellow-400' : 'text-gray-300'}` }))
+                );
+            };
+
+            return React.createElement('section', { id: "reviews", className: "py-20 bg-brand-stone" },
+                React.createElement('div', { className: "container mx-auto px-6" },
+                    React.createElement('div', { className: "text-center mb-12" },
+                        React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage" }, "What Our Patients Say"),
+                        React.createElement('p', { className: "mt-4 text-lg text-gray-600" }, "We're proud to be a trusted part of the Astoria community.")
+                    ),
+                    React.createElement('div', { className: "grid md:grid-cols-3 gap-8" },
+                        testimonialsData.map((testimonial, index) => (
+                            React.createElement('div', { key: index, className: "bg-white p-8 rounded-lg shadow-lg flex flex-col" },
+                                React.createElement('div', { className: "flex-grow" },
+                                    React.createElement('p', { className: "text-gray-600 mb-6 italic" }, `"${testimonial.text}"`)
+                                ),
+                                React.createElement('div', { className: "flex items-center mt-auto" },
+                                    React.createElement('img', { src: testimonial.photoUrl, alt: testimonial.author, className: "h-14 w-14 rounded-full mr-4 object-cover" }),
+                                    React.createElement('div', null,
+                                        React.createElement('h4', { className: "font-bold text-gray-800" }, testimonial.author),
+                                        React.createElement('p', { className: "text-sm text-gray-500" }, testimonial.role),
+                                        React.createElement(Rating, { rating: testimonial.rating })
+                                    )
+                                )
+                            )
+                        ))
+                    )
+                )
+            );
+        };
+        
+        const Location = () => {
+            return React.createElement('section', { id: "location", className: "py-20 bg-white" },
+                React.createElement('div', { className: "container mx-auto px-6" },
+                    React.createElement('div', { className: "grid md:grid-cols-2 gap-12 items-center" },
+                        React.createElement('div', { className: "text-center md:text-left" },
+                            React.createElement('h2', { className: "text-3xl md:text-4xl font-serif font-bold text-brand-sage mb-6" }, "Visit Us in Astoria"),
+                            React.createElement('div', { className: "space-y-4 text-lg text-gray-700" },
+                                React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
+                                    React.createElement(MapPinIcon, { className: "h-6 w-6 mr-3 text-brand-sage" }),
+                                    React.createElement('span', null, "40-13 Broadway, Astoria, NY 11103")
+                                ),
+                                React.createElement('div', { className: "flex items-center justify-center md:justify-start" },
+                                    React.createElement(ClockIcon, { className: "h-6 w-6 mr-3 text-brand-sage" }),
+                                    React.createElement('span', null, "Open Daily • Closes 7:00 PM")
+                                )
+                            ),
+                            React.createElement('a', { href: "https://www.google.com/maps/dir//40-13+Broadway,+Astoria,+NY+11103", target: "_blank", rel: "noopener noreferrer", className: "mt-8 inline-block bg-brand-sage text-white font-bold py-3 px-6 rounded-full hover:bg-opacity-90 transition-colors" }, "Get Directions")
+                        ),
+                        React.createElement('div', { className: "rounded-lg overflow-hidden shadow-2xl h-80" },
+                            React.createElement('iframe', { src: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.6111068213695!2d-73.92348722369486!3d40.77063897138769!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f1870a3111d%3A0x34139281a80693a1!2sWellness%20Center%20Pharmacy!5e0!3m2!1sen!2sus!4v1701192994967", width: "100%", height: "100%", style: { border: 0 }, allowFullScreen: false, loading: "lazy", referrerPolicy: "no-referrer-when-downgrade", title: "Wellness Center Pharmacy Location" })
+                        )
+                    )
+                )
+            );
+        };
+        
+        const Footer = () => {
+            return React.createElement('footer', { className: "bg-brand-sage text-white" },
+                React.createElement('div', { className: "container mx-auto px-6 py-8" },
+                    React.createElement('div', { className: "flex flex-col md:flex-row justify-between items-center text-center md:text-left" },
+                        React.createElement('div', { className: "mb-6 md:mb-0" },
+                            React.createElement('div', { className: "flex items-center justify-center md:justify-start space-x-2 mb-2" },
+                                React.createElement(LeafIcon, { className: "h-8 w-8 text-white" }),
+                                React.createElement('h1', { className: "text-xl font-serif font-bold" }, "Wellness Center Pharmacy")
+                            ),
+                            React.createElement('p', { className: "text-sm text-stone-300" }, "40-13 Broadway, Astoria, NY 11103"),
+                            React.createElement('p', { className: "text-sm text-stone-300" }, "tel: (718) 956-0060")
+                        ),
+                        React.createElement('div', { className: "flex items-center space-x-4" },
+                            React.createElement('a', { href: "https://www.facebook.com/p/Wellness-Center-Pharmacy-100063623944414/", target: "_blank", rel: "noopener noreferrer", "aria-label": "Facebook", className: "text-white hover:text-stone-300 transition-colors" },
+                                React.createElement(FacebookIcon, { className: "h-7 w-7" })
+                            )
+                        )
+                    ),
+                    React.createElement('div', { className: "border-t border-white/20 mt-8 pt-6 text-center text-sm text-stone-300" },
+                        React.createElement('p', null, `© ${new Date().getFullYear()} Wellness Center Pharmacy. All Rights Reserved.`)
+                    )
+                )
+            );
+        };
+        
+        const App = () => {
+            return React.createElement('div', { className: "bg-brand-stone text-gray-800" },
+                React.createElement(Header),
+                React.createElement('main', null,
+                    React.createElement(Hero),
+                    React.createElement(Services),
+                    React.createElement(Testimonials),
+                    React.createElement(Location)
+                ),
+                React.createElement(Footer)
+            );
+        };
+
+        // --- Render Application ---
+        const rootElement = document.getElementById('root');
+        const root = ReactDOM.createRoot(rootElement);
+        root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
+    </script>
+</body>
+</html>
